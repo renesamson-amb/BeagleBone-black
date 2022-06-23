@@ -1,0 +1,53 @@
+version: "3.7"
+services:
+  asus-rk3288-development:
+    image: ${IMAGE_NAME}
+    network_mode: "host"
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: yocto-buster-development
+    volumes:
+      # Mount user's home directory.
+      - type: bind
+        source: ${HOME}
+        target: ${HOME}
+      # Mount host's /etc for access to passwd file (read-only).
+      - type: bind
+        source: /etc
+        target: /opt/host/etc
+        read_only: true
+      # Mount X11 socket directory to enable graphical applications
+      - type: bind
+        source: /tmp/.X11-unix
+        target: /tmp/.X11-unix
+      - type: bind
+        source: /dev/log
+        target: /dev/log
+      # Leftover from Stonefly in case needed...
+      # Used by MMC flash image generation script.
+      # - type: bind
+      #   source: /proc/sys/vm/drop_caches
+      #   target: /opt/host/drop_caches
+    environment:
+      - DISPLAY
+      - USER
+      - WORKING_DIR=${PWD}
+      - BIAMP_BITBUCKET_URL
+      - HOME
+
+    # The following is not ideal, but is required because docker-compose does not
+    # support the --device-cgroup-rule option that plain "docker run" has.
+    # It is used for access to device nodes during MMC flash image generation.
+    privileged: true
+    # The following represents a more secure alternative to "privileged: true",
+    # but the devices must already exist on the host filesystem when the container
+    # is run.  This is generally not true for the /dev/loop0pX nodes.
+    #devices:
+    #  - "/dev/loop0:/dev/loop0"
+    #  - "/dev/mapper/control:/dev/mapper/control"
+    #  - "/dev/mapper/loop0p1:/dev/mapper/loop0p1"
+    #  - "/dev/mapper/loop0p2:/dev/mapper/loop0p2"
+    #  - "/dev/mapper/loop0p3:/dev/mapper/loop0p3"
+    #cap_add:
+    #   - SYS_ADMIN
