@@ -18,10 +18,20 @@ fi
 
 cd ${BASE_DIR}
 
+#Add step to create a mirror dir if
 cd ${MIRROR_DIR}
 # Check if meta-rockchip exists in the MIRROR_DIR
-if [ ! -d "${MIRROR_DIR}/meta-rockchip" ];
+if [ ! -d "meta-rockchip" ];
 then
 	git clone -b dunfell git://git.yoctoproject.org/meta-rockchip
 fi
+
+
+# Check if meta-oe exists in the MIRROR_DIR
+if [ ! -d "meta-oe" ];
+then
+        git clone -b dunfell git://git.openembedded.org/meta-openembedded
+fi
+
+
 
