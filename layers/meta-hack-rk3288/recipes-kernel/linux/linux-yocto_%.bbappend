@@ -1,9 +1,7 @@
 #FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
 
-
-
 #SRC_URI_append = " \
-#   file://hack_defconfig \
+#   file://hack_rk3288.dts \
 #"
 
 #unset KBUILD_DEFCONFIG
