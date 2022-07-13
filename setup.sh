@@ -3,23 +3,19 @@
 ##########################################################
 
 BASE_DIR=${PWD}
-POKY_DIR=${PWD}/.rk3288-linux
-MIRROR_DIR=${PWD}/layers
+MIRROR_DIR=${PWD}/.build-linux
 
-if [ ! -d "${POKY_DIR}" ];
+if [ ! -d "${MIRROR_DIR}" ];
 then
-    mkdir -p ${POKY_DIR} && cd ${POKY_DIR}
-else
-    if [ ! -d "${POKY_DIR}/poky" ];
-    then
-        git clone -b dunfell git://git.yoctoproject.org/poky
-    fi
+    mkdir -p ${MIRROR_DIR}
 fi
 
-cd ${BASE_DIR}
-
-#Add step to create a mirror dir if
 cd ${MIRROR_DIR}
+if [ ! -d "poky" ];
+  then
+      git clone -b dunfell git://git.yoctoproject.org/poky
+fi
+
 # Check if meta-rockchip exists in the MIRROR_DIR
 if [ ! -d "meta-rockchip" ];
 then
