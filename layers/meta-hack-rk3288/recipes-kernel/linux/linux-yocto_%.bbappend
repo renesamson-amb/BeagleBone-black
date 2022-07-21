@@ -1,8 +1,12 @@
-#FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
+FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
 
-#SRC_URI_append = " \
-#   file://hack_rk3288.dts \
-#"
+#   file://hack-rk3288.dts
+
+
+SRC_URI += " \
+   file://hack-rk3288.dts \
+   file://devtool-fragment.cfg \
+"
 
 #unset KBUILD_DEFCONFIG
 #KERNEL_DEFCONFIG_starburst-rk3399 = "${WORKDIR}/hack_defconfig"
@@ -16,6 +20,7 @@
 #}
 
 COMPATIBLE_MACHINE .= "|hack-rk3288"
+
 
 
 
