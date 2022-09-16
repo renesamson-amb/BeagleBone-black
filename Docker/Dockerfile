@@ -1,7 +1,7 @@
 #
 # Dockerized environment to run the Yocto build in
 #
-FROM debian:buster-slim as yocto-buster-base
+FROM debian:stretch-slim as yocto-stretch-base
 
 # WORKAROUND problem with openjdk-*-jre-headless install
 #RUN mkdir /usr/share/man/man1
@@ -19,7 +19,7 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --allow-
     git-core diffstat unzip texinfo gcc-multilib \
     build-essential chrpath socat cpio python3 python3-pip python3-pexpect \
     xz-utils debianutils iputils-ping python3-git python3-jinja2 libegl1-mesa libsdl1.2-dev \
-    pylint3 xterm python3-wget nano nfs-kernel-server
+    pylint3 xterm python3-wget nano nfs-kernel-server bison flex 
 
 # Plus these that the Yocto build seems to need when you run it.
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --allow-unauthenticated \
@@ -45,13 +45,13 @@ RUN ln -sf /bin/bash /bin/sh
 
 # The final pieces of image required to enable in container development (note this is before Jenkins since
 # the Jenkins container takes some command line parameters we don't care about....)
-FROM yocto-buster-base as yocto-buster-development
+FROM yocto-stretch-base as yocto-stretch-dev
 
 ##### Stonefly-esque Addons
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y sudo
 
 # Causes the default bash prompt to indicate that we are inside the container.
-RUN echo 'yocto-buster-dev' > /etc/debian_chroot
+RUN echo 'yocto-stretch-dev' > /etc/debian_chroot
 
 # Create a group in the container that the user who has logged in can join
 RUN groupadd yocto

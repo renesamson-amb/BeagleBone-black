@@ -1,0 +1,4 @@
+SANITY_VERSION 1
+TMPDIR /home/rene/tinker-asus/build/tmp
+SSTATE_DIR /var/cache/yocto/sstate/
+NATIVELSBSTRING debian-9

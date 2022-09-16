@@ -1,0 +1,22 @@
+From 43638ad20c3368224206b2b8800e8037f43a600a Mon Sep 17 00:00:00 2001
+From: RENE SAMSON AMBROSE <renesamson.ambrose@biamp.com>
+Date: Fri, 9 Sep 2022 08:12:46 +0000
+Subject: [PATCH] Fix for qemu
+
+---
+ include/qemu/bitops.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/include/qemu/bitops.h b/include/qemu/bitops.h
+index 3f0926c..64c66a4 100644
+--- a/include/qemu/bitops.h
++++ b/include/qemu/bitops.h
+@@ -17,7 +17,7 @@
+ #include "atomic.h"
+ 
+ #define BITS_PER_BYTE           CHAR_BIT
+-#define BITS_PER_LONG           (sizeof (unsigned long) * BITS_PER_BYTE)
++#define BITS_PER_LONG           32
+ 
+ #define BIT(nr)                 (1UL << (nr))
+ #define BIT_MASK(nr)            (1UL << ((nr) % BITS_PER_LONG))

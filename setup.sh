@@ -13,21 +13,26 @@ fi
 cd ${MIRROR_DIR}
 if [ ! -d "poky" ];
   then
-      git clone -b dunfell git://git.yoctoproject.org/poky
+      git clone -b sumo git://git.yoctoproject.org/poky
 fi
 
 # Check if meta-rockchip exists in the MIRROR_DIR
-if [ ! -d "meta-rockchip" ];
+if [ ! -d "meta-xilinx" ];
 then
-	git clone -b dunfell git://git.yoctoproject.org/meta-rockchip
+	git clone -b sumo https://github.com/Xilinx/meta-xilinx.git
 fi
 
 
 # Check if meta-oe exists in the MIRROR_DIR
 if [ ! -d "meta-oe" ];
 then
-        git clone -b dunfell git://git.openembedded.org/meta-openembedded
+        git clone -b sumo git://git.openembedded.org/meta-openembedded
 fi
 
 
+# Check if meta-gplv2 exists in the MIRROR_DIR
+if [ ! -d "meta-gplv2" ];
+then
+        git clone -b sumo https://github.com/lgirdk/meta-gplv2.git
+fi
 

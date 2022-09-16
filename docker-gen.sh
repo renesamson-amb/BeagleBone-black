@@ -1,4 +1,4 @@
-PLATFORM="asus-rk3288"
+PLATFORM="zedboard"
 # Development specific variables
 DOCKER_COMPOSE_FILE=${PWD}/Docker/docker-compose.yml
 SERVICE_NAME=${PLATFORM}-development

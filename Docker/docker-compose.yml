@@ -1,12 +1,12 @@
 version: "3.7"
 services:
-  asus-rk3288-development:
+  zedboard-development:
     image: ${IMAGE_NAME}
     network_mode: "host"
     build:
       context: .
       dockerfile: Dockerfile
-      target: yocto-buster-development
+      target: yocto-stretch-dev
     volumes:
       # Mount user's home directory.
       - type: bind
