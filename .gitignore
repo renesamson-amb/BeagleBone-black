@@ -1,0 +1,9 @@
+
+
+.build-linux/
+build/cache/
+build/tmp/
+!build/conf/local.conf
+!build/conf/bblayers.conf
+build/*.log
+
