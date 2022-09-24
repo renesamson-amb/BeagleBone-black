@@ -1,2 +1,2 @@
 # tinker-asus
-Yocto build for the tinker board from Asus. Base processor is a rockchip rk-3288. 
+Yocto build for the Beagle bone black. Has sample drivers that are explained in Linux Device Drivers 3 Book.
