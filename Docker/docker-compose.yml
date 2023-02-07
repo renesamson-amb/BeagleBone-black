@@ -6,7 +6,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-      target: yocto-stretch-dev
+      # target: "yocto-stretch-dev"
     volumes:
       # Mount user's home directory.
       - type: bind

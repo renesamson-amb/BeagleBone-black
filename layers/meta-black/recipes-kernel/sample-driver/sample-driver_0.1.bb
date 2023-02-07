@@ -12,5 +12,6 @@ SRC_URI = "file://Makefile \
 
 S = "${WORKDIR}"
 
+
 RPROVIDES_${PN} += "kernel-module-sample-driver"
 
