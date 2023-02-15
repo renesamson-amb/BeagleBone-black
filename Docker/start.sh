@@ -7,9 +7,11 @@
 
 # Determine the user's UID and GID
 passwdline=`cat /opt/host/etc/passwd | grep "^$USER:"`
-uid=`echo $passwdline | cut -f3 -d':'`
-gid=`echo $passwdline | cut -f4 -d':'`
+#uid=`echo $passwdline | cut -f3 -d':'`
+#gid=`echo $passwdline | cut -f4 -d':'`
 
+uid=1001
+gid=1001
 # Create a group with the same primary GID and name as the user who started the container.
 groupadd -g ${gid} ${USER}
 
